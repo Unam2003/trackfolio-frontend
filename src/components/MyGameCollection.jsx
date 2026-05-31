@@ -38,7 +38,7 @@ const MyGamesCollection = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3001/me/games", {
+    fetch(`${import.meta.env.VITE_API_URL}/me/games`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -22,7 +22,7 @@ const SearchResults = () => {
     setError("");
 
     if (gameQuery) {
-      const url = `http://localhost:3001/games/search?query=${encodeURIComponent(gameQuery)}`;
+      const url = `${import.meta.env.VITE_API_URL}/games/search?query=${encodeURIComponent(gameQuery)}`;
 
       fetch(url, {
         headers: { Authorization: `Bearer ${token}` },
@@ -44,11 +44,11 @@ const SearchResults = () => {
           setLoading(false);
         });
     } else {
-      const fetchMovies = fetch(`http://localhost:3001/movies/search?query=${encodeURIComponent(query)}`, {
+      const fetchMovies = fetch(`${import.meta.env.VITE_API_URL}/movies/search?query=${encodeURIComponent(query)}`, {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => (res.ok ? res.json() : []));
 
-      const fetchTv = fetch(`http://localhost:3001/tv_series/search?query=${encodeURIComponent(query)}`, {
+      const fetchTv = fetch(`${import.meta.env.VITE_API_URL}/tv_series/search?query=${encodeURIComponent(query)}`, {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => (res.ok ? res.json() : []));
 

@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3001/me/media", {
+    fetch(`${import.meta.env.VITE_API_URL}/me/media`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ const Home = () => {
   const handleNextEpisode = (tmdbId, currentSeason, nextEpisode) => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://localhost:3001/tv_series/watch?tmdbId=${tmdbId}&season=${currentSeason}&episode=${nextEpisode}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/tv_series/watch?tmdbId=${tmdbId}&season=${currentSeason}&episode=${nextEpisode}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

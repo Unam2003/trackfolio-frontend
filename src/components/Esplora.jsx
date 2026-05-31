@@ -37,7 +37,7 @@ const Esplora = () => {
     // fetch serie tv
     const getSeries = function () {
       setLoadingSeries(true);
-      fetch("http://localhost:3001/tv_series?page=1", {
+      fetch(`${import.meta.env.VITE_API_URL}/tv_series?page=1`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ const Esplora = () => {
     // fetch film
     const getMovies = function () {
       setLoadingMovies(true);
-      fetch("http://localhost:3001/movies?page=1", {
+      fetch(`${import.meta.env.VITE_API_URL}/movies?page=1`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ const Esplora = () => {
     // fetch anime
     const getAnime = function () {
       setLoadingAnime(true);
-      fetch("http://localhost:3001/anime?page=1", {
+      fetch(`${import.meta.env.VITE_API_URL}/anime?page=1`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

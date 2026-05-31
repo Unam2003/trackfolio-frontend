@@ -39,7 +39,7 @@ const GamesHome = () => {
     const token = localStorage.getItem("token");
 
     //  ----------------> GIOCHI TRENDING <----------------
-    fetch("http://localhost:3001/games/trending", {
+    fetch(`${import.meta.env.VITE_API_URL}/games/trending`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })
@@ -57,7 +57,7 @@ const GamesHome = () => {
       });
 
     //  ----------------> COMING SOON <----------------
-    fetch("http://localhost:3001/games/upcoming", {
+    fetch(`${import.meta.env.VITE_API_URL}/games/upcoming`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })
@@ -75,7 +75,7 @@ const GamesHome = () => {
       });
 
     //  ----------------> ACTION GAMES <----------------
-    fetch("http://localhost:3001/games/genre/action", {
+    fetch(`${import.meta.env.VITE_API_URL}/games/genre/action`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })
@@ -93,7 +93,7 @@ const GamesHome = () => {
       });
 
     //  ----------------> INDIE GAMES <----------------
-    fetch("http://localhost:3001/games/genre/indie", {
+    fetch(`${import.meta.env.VITE_API_URL}/games/genre/indie`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })

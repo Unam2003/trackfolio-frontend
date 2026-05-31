@@ -35,7 +35,7 @@ const Details = () => {
     const token = localStorage.getItem("token");
     const endpoint = isTvShow ? "tv_series" : "movies";
 
-    fetch(`http://localhost:3001/${endpoint}/details?id=${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/${endpoint}/details?id=${id}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })
@@ -47,7 +47,7 @@ const Details = () => {
         setContent(data);
 
         // controllo se l'utente lo ha già nel db
-        return fetch(`http://localhost:3001/me/media/check?tmdbId=${id}`, {
+        return fetch(`${import.meta.env.VITE_API_URL}/me/media/check?tmdbId=${id}`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         });
@@ -95,7 +95,7 @@ const Details = () => {
     const token = localStorage.getItem("token");
     setLoadingEpisodes(true);
 
-    fetch(`http://localhost:3001/tv_series/season?id=${id}&seasonNumber=${activeSeason}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/tv_series/season?id=${id}&seasonNumber=${activeSeason}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -126,7 +126,7 @@ const Details = () => {
 
     const token = localStorage.getItem("token");
 
-    fetch(`http://localhost:3001/tv_series/watch?tmdbId=${id}&season=${activeSeason}&episode=${episodeNumber}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/tv_series/watch?tmdbId=${id}&season=${activeSeason}&episode=${episodeNumber}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -164,7 +164,7 @@ const Details = () => {
 
     setLoadingEpisodes(true);
 
-    fetch(`http://localhost:3001/tv_series/watch?tmdbId=${id}&season=${activeSeason}&episode=${lastEpisodeOfSeason}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/tv_series/watch?tmdbId=${id}&season=${activeSeason}&episode=${lastEpisodeOfSeason}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -198,7 +198,7 @@ const Details = () => {
 
     // CASO 1: Siamo alla stagione 1, resettiamo a Stagione 1, Episodio 0
     if (activeSeason === 1) {
-      fetch(`http://localhost:3001/tv_series/watch?tmdbId=${id}&season=1&episode=0`, {
+      fetch(`${import.meta.env.VITE_API_URL}/tv_series/watch?tmdbId=${id}&season=1&episode=0`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -222,11 +222,9 @@ const Details = () => {
           showNotification("Errore nel reset della stagione.", "danger");
         });
     } else {
-      // CASO 2: Siamo alla stagione 2 o superiore.
-      // Recuperiamo prima quanti episodi ha la stagione precedente per fare il rollback preciso
       const previousSeason = activeSeason - 1;
 
-      fetch(`http://localhost:3001/tv_series/season?id=${id}&seasonNumber=${previousSeason}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/tv_series/season?id=${id}&seasonNumber=${previousSeason}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       })
@@ -237,8 +235,7 @@ const Details = () => {
         .then((data) => {
           const lastEpisodeOfPreviousSeason = data.episodes?.length || 1;
 
-          // Adesso mandiamo al backend l'esatto ultimo episodio della stagione prima
-          return fetch(`http://localhost:3001/tv_series/watch?tmdbId=${id}&season=${previousSeason}&episode=${lastEpisodeOfPreviousSeason}`, {
+          return fetch(`${import.meta.env.VITE_API_URL}/tv_series/watch?tmdbId=${id}&season=${previousSeason}&episode=${lastEpisodeOfPreviousSeason}`, {
             method: "PUT",
             headers: {
               Authorization: `Bearer ${token}`,
@@ -270,7 +267,7 @@ const Details = () => {
     const token = localStorage.getItem("token");
     const newStatus = mediaStatus === "COMPLETED" ? "WATCHING" : "COMPLETED";
 
-    fetch(`http://localhost:3001/me/media/${savedMediaId}/status?status=${newStatus}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/me/media/${savedMediaId}/status?status=${newStatus}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -298,7 +295,7 @@ const Details = () => {
 
     setLoadingEpisodes(true);
 
-    fetch(`http://localhost:3001/tv_series/season?id=${id}&seasonNumber=${lastSeason}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/tv_series/season?id=${id}&seasonNumber=${lastSeason}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })
@@ -309,7 +306,7 @@ const Details = () => {
       .then((data) => {
         const lastEpisode = data.episodes?.length || 1;
 
-        return fetch(`http://localhost:3001/tv_series/watch?tmdbId=${id}&season=${lastSeason}&episode=${lastEpisode}`, {
+        return fetch(`${import.meta.env.VITE_API_URL}/tv_series/watch?tmdbId=${id}&season=${lastSeason}&episode=${lastEpisode}`, {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         });
@@ -343,7 +340,7 @@ const Details = () => {
       backendType = "ANIME";
     }
 
-    fetch("http://localhost:3001/me/media", {
+    fetch(`${import.meta.env.VITE_API_URL}/me/media`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -391,7 +388,7 @@ const Details = () => {
       return;
     }
 
-    fetch(`http://localhost:3001/me/media/${savedMediaId}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/me/media/${savedMediaId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

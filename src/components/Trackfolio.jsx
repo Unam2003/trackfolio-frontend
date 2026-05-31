@@ -11,7 +11,7 @@ const Trackfolio = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3001/me/media", {
+    fetch(`${import.meta.env.VITE_API_URL}/me/media`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {

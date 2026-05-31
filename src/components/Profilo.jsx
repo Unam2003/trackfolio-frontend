@@ -27,7 +27,7 @@ const Profilo = () => {
     }
 
     // --- FETCH: DATI UTENTE ---
-    fetch("http://localhost:3001/users/me", {
+    fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const Profilo = () => {
       });
 
     // --- FETCH: MEDIA (FILM E SERIE) ---
-    fetch("http://localhost:3001/me/media", {
+    fetch(`${import.meta.env.VITE_API_URL}/me/media`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -91,7 +91,7 @@ const Profilo = () => {
       });
 
     // --- FETCH: VIDEOGIOCHI ---
-    fetch("http://localhost:3001/me/games", {
+    fetch(`${import.meta.env.VITE_API_URL}/me/games`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

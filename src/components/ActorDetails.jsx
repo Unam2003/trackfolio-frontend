@@ -11,7 +11,7 @@ const ActorDetails = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://localhost:3001/actors/details?id=${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/actors/details?id=${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

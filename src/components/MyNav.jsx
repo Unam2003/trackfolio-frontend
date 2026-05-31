@@ -14,7 +14,7 @@ const MyNav = ({ searchQuery, setSearchQuery }) => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    fetch("http://localhost:3001/users/me", {
+    fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

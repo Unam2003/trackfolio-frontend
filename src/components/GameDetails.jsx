@@ -103,7 +103,7 @@ const GameDetails = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://localhost:3001/games/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/games/${id}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })
@@ -121,7 +121,7 @@ const GameDetails = () => {
           setSelectedPlatform(data.platform);
         }
 
-        return fetch(`http://localhost:3001/me/games/check?rawgId=${id}`, {
+        return fetch(`${import.meta.env.VITE_API_URL}/me/games/check?rawgId=${id}`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         });
@@ -179,7 +179,7 @@ const GameDetails = () => {
       metacritic: game.metacritic || null,
     };
 
-    fetch("http://localhost:3001/me/games", {
+    fetch(`${import.meta.env.VITE_API_URL}/me/games`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -211,7 +211,7 @@ const GameDetails = () => {
   const handleUpdateGame = (payload) => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://localhost:3001/me/games/${savedGameId}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/me/games/${savedGameId}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -237,7 +237,7 @@ const GameDetails = () => {
       return;
     }
 
-    fetch(`http://localhost:3001/me/games/${savedGameId}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/me/games/${savedGameId}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     })
