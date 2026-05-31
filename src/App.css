@@ -1,0 +1,143 @@
+.trackfolio-title {
+  background-image: url(https://res.cloudinary.com/unam21/image/upload/v1779195061/wmremove-transformed_dibqvw.png) !important;
+  background-size: cover !important;
+  background-clip: text !important;
+  color: transparent !important;
+  animation: animate 20s linear infinite !important;
+}
+
+@keyframes animate {
+  to {
+    background-position-x: -500px;
+  }
+}
+
+/* ===== NAV / UI VARI ===== */
+
+.text-purple-active {
+  color: #a74eff !important;
+}
+
+/* ===== SEARCH INPUT ===== */
+.custom-search-input {
+  background: transparent !important;
+  color: white !important;
+}
+
+.custom-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.nav-link:hover {
+  color: #c084fc !important;
+}
+
+.border-purple {
+  border-color: #a855f7 !important;
+}
+
+.x-small {
+  font-size: 0.75rem;
+}
+
+/* ===== CARD STILE MEDIA ===== */
+
+.custom-movie-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px !important;
+  border: 1px solid #6c757d !important;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.custom-movie-card img:hover {
+  transform: scale(1.02);
+  border-color: #a855f7 !important;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+}
+
+/* ===== CAROSELLO HOME ===== */
+
+.custom-home-carousel .carousel-control-prev,
+.custom-home-carousel .carousel-control-next {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(168, 85, 247, 0.85);
+  border-radius: 50%;
+  top: 35%;
+  opacity: 1;
+}
+
+.custom-home-carousel .carousel-control-prev {
+  left: -25px;
+}
+
+.custom-home-carousel .carousel-control-next {
+  right: -25px;
+}
+
+.custom-home-carousel .carousel-inner {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  overflow: hidden !important;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar-wrapper {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+/* ===== LAYOUT BASE ===== */
+
+main {
+  position: relative;
+  overflow: visible !important;
+}
+
+footer {
+  flex-shrink: 0;
+  z-index: 1050;
+  box-shadow: 0 -2px 20px rgba(168, 85, 247, 0.08);
+}
+
+/* ===== SCROLLBAR ===== */
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #a855f7;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #c084fc;
+}
+
+/* ===== INPUT LOGIN ===== */
+
+.custom-login-input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+  opacity: 1;
+}
+
+.hover-link:hover {
+  text-decoration: underline !important;
+}
