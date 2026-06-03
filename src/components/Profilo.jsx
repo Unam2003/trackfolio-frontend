@@ -59,15 +59,35 @@ const Profilo = () => {
         if (!res.ok) throw new Error("Errore recupero statistiche media");
         return res.json();
       })
-      .then((stats) => {
-        // Riceviamo direttamente il DTO calcolato dal server dal metodo getUserStats
-        setMinutiSerie(stats.minutiSerie || 0);
-        setTotaleEpisodi(stats.totaleEpisodi || 0);
-        setMinutiFilm(stats.minutiFilm || 0);
-        setTotaleFilm(stats.totaleFilm || 0);
+      .then((mediaList) => {
+        let mSerie = 0;
+        let tEpisodi = 0;
+        let mFilm = 0;
+        let tFilm = 0;
+
+        for (let i = 0; i < mediaList.length; i++) {
+          let item = mediaList[i];
+          if (item.type === "MOVIE" && item.status === "COMPLETED") {
+            tFilm = tFilm + 1;
+            let durataFilm = item.runTime || item.run_time || item.runtime;
+            if (durataFilm) mFilm = mFilm + parseInt(durataFilm, 10);
+          }
+          if (item.type === "TV_SERIES" || item.type === "ANIME") {
+            let epVisti = item.lastEpisodeWatched || item.last_episode_watched || 0;
+            let durataEp = item.episodeRunTime || item.episode_run_time || item.runtime || item.runTime;
+            if (parseInt(epVisti, 10) > 0) {
+              tEpisodi = tEpisodi + parseInt(epVisti, 10);
+              if (durataEp) mSerie = mSerie + parseInt(epVisti, 10) * parseInt(durataEp, 10);
+            }
+          }
+        }
+        setMinutiSerie(mSerie);
+        setTotaleEpisodi(tEpisodi);
+        setMinutiFilm(mFilm);
+        setTotaleFilm(tFilm);
       })
       .catch((err) => {
-        console.error("Errore nel caricamento delle statistiche media:", err);
+        console.error("Errore nel calcolo delle statistiche media:", err);
       });
 
     // --- FETCH: VIDEOGIOCHI ---
