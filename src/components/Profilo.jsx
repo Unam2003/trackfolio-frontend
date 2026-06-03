@@ -48,7 +48,7 @@ const Profilo = () => {
       });
 
     // --- FETCH: MEDIA (FILM E SERIE) ---
-    fetch(`${import.meta.env.VITE_API_URL}/me/media`, {
+    fetch(`${import.meta.env.VITE_API_URL}/me/media/stats`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
